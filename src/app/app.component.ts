@@ -8,7 +8,7 @@ import { GetUsersService } from './get-users.service';
 })
 export class AppComponent implements OnInit {
   // options: any | undefined;
-  options = ['same', 'fun'];
+  options = ['name1', 'name2'];
   constructor(private GetUsersService: GetUsersService) {}
 
   ngOnInit() {

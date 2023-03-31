@@ -11,6 +11,12 @@ export class GetUsersService {
   getUsers() {
     return this.http
       .get('https://jsonplaceholder.typicode.com/users')
-      .pipe(map((response: any) => response.map((item: any) => item['name'])));
+      .pipe(
+        map((responseArray: any) =>
+          responseArray.map(
+            (eachArrayObject: any) => eachArrayObject.address.street
+          )
+        )
+      );
   }
 }

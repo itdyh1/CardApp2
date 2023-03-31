@@ -1,5 +1,4 @@
 <div class="container">
-  test1
   <mat-form-field>
     <mat-label> Test </mat-label>
     <input matInput type="text" [matAutocomplete]="auto" />
@@ -9,4 +8,8 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="getData()">
+    Get Users Raw
+  </button>
 </div>

@@ -1,3 +1,7 @@
+pre {
+  margin: 0;
+}
+
 .container {
   display: flex;
   margin-left: auto;
@@ -6,4 +10,9 @@
   max-width: 800pt;
   flex-direction: column;
   justify-content: center;
+}
+
+.rounded-corners {
+  border-radius: 10px;
+  overflow: hidden;
 }

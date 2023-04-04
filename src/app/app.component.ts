@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GetUsersService } from './get-users.service';
-import { map, Observable, throwError, catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,36 +9,40 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   // options: any | undefined;
-  options = ['name1', 'name2'];
+  options: any | undefined;
+  rawUsers: any[] | undefined; // this will be an array of objects
+
   constructor(
     private GetUsersService: GetUsersService,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
-    this.getUsers();
+    this.getStreet();
   }
 
   title = 'CardApp2';
-  getRawUsers$ = this.http.get('https://jsonplaceholder.typicode.com/users');
 
-  getUsers() {
-    this.GetUsersService.getUsers().subscribe((response) => {
+  // For a subscription to work, we need to set the variable inside the subscribe callback function
+  getStreet() {
+    this.GetUsersService.getStreet().subscribe((response) => {
       this.options = response;
       console.log(this.options);
     });
   }
 
-  rawUsers: any | undefined;
-
-  // this.http
-  //   .get('https://jsonplaceholder.typicode.com/users')
-  //   .pipe(map((response: any) => response.map((item: any) => item['name'])));
+  // This should/could? go in a service
+  getRawUsers$ = this.http.get('https://jsonplaceholder.typicode.com/users');
 
   getData() {
-    let returnArray: any = this.getRawUsers$.subscribe(
-      (value) => (returnArray = value)
-    );
-    return console.log(returnArray);
+    this.getRawUsers$.subscribe((response) => {
+      // Convert the response to an array of objects
+      this.rawUsers = Object.values(response);
+    });
   }
+
+  // ------------------------ CODE Example-----------------------------
+  snippet = `function test(){
+  console.log('Test');
+}`;
 }

@@ -4,7 +4,8 @@
     <input matInput type="text" [matAutocomplete]="auto" />
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let item of options" [value]="item">
-        {{ item }}
+        {{ item.street.key }}
+        {{ item.street.value }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -12,4 +13,31 @@
   <button mat-raised-button color="primary" (click)="getData()">
     Get Users Raw
   </button>
+
+  <div *ngFor="let user of rawUsers">
+    Name: {{ user.name }} <br />
+    Email: {{ user.email }}
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of rawUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <H1>Code Example</H1>
+  <pre>
+      <code class="rounded-corners">{{ snippet }}</code>
+    </pre>
 </div>
